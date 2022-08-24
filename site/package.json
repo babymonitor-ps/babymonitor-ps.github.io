@@ -1,0 +1,30 @@
+{
+	"name": "@elegantstack/gatsby-starter-flexiblog-medical",
+	"private": true,
+	"version": "3.10.0",
+	"scripts": {
+		"develop": "gatsby develop",
+		"start": "gatsby develop",
+		"build": "gatsby build",
+		"clean": "gatsby clean",
+		"serve": "gatsby serve"
+	},
+	"dependencies": {
+		"@elegantstack/gatsby-blog-algolia": "*",
+		"@elegantstack/gatsby-theme-flexiblog-medical": "*",
+		"dotenv": "^16.0.1",
+		"gatsby": "^4.14.1",
+		"gatsby-plugin-algolia": "^0.26.0",
+		"gatsby-plugin-feed-generator": "^2.0.5",
+		"gatsby-plugin-google-gtag": "^4.20.0",
+		"gatsby-plugin-manifest": "^4.20.0",
+		"gatsby-plugin-sitemap": "^5.20.0",
+		"gatsby-source-strapi": "^2.0.0",
+		"markdown-it": "^13.0.1",
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0"
+	},
+	"devDependencies": {
+		"prettier": "^2.6.2"
+	}
+}
