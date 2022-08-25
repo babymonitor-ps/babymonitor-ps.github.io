@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "lerna clean",
     "release": "lerna version",
-    "prettier:windows": "./node_modules/.bin/prettier --write \"{packages,starters}/**/*.{jsx,js}\""
+    "prettier:windows": "./node_modules/.bin/prettier --write \"{packages,starters}/**/*.{jsx,js}\"",
+    "build": "cd site && yarn build"
   },
   "devDependencies": {
     "conventional-changelog-conventionalcommits": "^4.6.3",
