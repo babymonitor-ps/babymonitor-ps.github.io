@@ -7,27 +7,27 @@ export const useGlobal = () => {
 
 const globalQuery = graphql`
   query strapiGlobalQuery {
-      strapiGlobal {
-          id
-          siteName
-          siteDescription
-          publishedAt(formatString: "MMMM DD, YYYY")
-          defaultSeo {
-              keywords
-              metaTitle
-              metaDescription
-              metaImage {
-                  localFile {
-                      url
-                  }
-              }
+    strapiGlobal {
+      id
+      siteName
+      siteDescription
+      publishedAt(formatString: "MMMM DD, YYYY")
+      defaultSeo {
+        keywords
+        metaTitle
+        metaDescription
+        metaImage {
+          localFile {
+            url
           }
-          favicon {
-              localFile {
-              url
-            }
-          }
+        }
       }
+      favicon {
+        localFile {
+          url
+        }
+      }
+    }
   }
   
   `

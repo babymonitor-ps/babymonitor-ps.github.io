@@ -80,7 +80,18 @@ module.exports = {
               }
             }
           },
-          'privacy-policy',
+          {
+            singularName: 'privacy-policy',
+            queryParams: {
+              populate: {
+                title: '*',
+                content: '*',
+                seo: {
+                  populate: '*'
+                }
+              }
+            }
+          },
           {
             singularName: 'terms-and-condition',
             queryParams: {

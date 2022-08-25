@@ -46,6 +46,7 @@ const Seo = ({
   }*/
 
   console.log(seo)
+  console.log(defaultSeo)
   const fullSeo = { ...defaultSeo, ...seo};
   console.log(fullSeo)
 
