@@ -18,6 +18,9 @@ type StrapiArticleProxy implements Node & Article
   category: StrapiCategoryProxy
     @proxyField(from: "parent.category___NODE")
     @link(by: "parent.id")
+  seo: StrapiSeoProxy
+    @proxyField(from: "parent.SEO___NODE")
+    @link(by: "parent.id")
   tags: [ArticleTag] @proxyField(from: "parent.tags_array") @link(by: "name")
   keywords: [String] @proxyField(from: "parent.keywords_array")
   link: String @proxyField
@@ -96,3 +99,36 @@ extend type STRAPI__MEDIA implements Node {
     @link(on: "File", from: "localFile___NODE")
     @proxyResolver(on: "File", to: "publicURL")
 }
+
+############################################
+## SEO
+############################################
+
+type StrapiSeoProxy implements Node & Seo
+  @dontInfer
+  @childOf(types: ["STRAPI__COMPONENT_SHARED_SEO"])
+  @proxyOf(type: "STRAPI__COMPONENT_SHARED_SEO") {
+    keywords: String! @proxyField
+    metaDescription: String! @proxyField
+    metaTitle: String! @proxyField
+    metaImage: ImageSharp
+      @proxyField(from: "parent.metaImage___NODE")
+      @link(on: "STRAPI__MEDIA")
+      @proxyResolver(on: "STRAPI__MEDIA", to: "localFileImageSharp")
+  }
+
+type PrivacyPolicyProxy implements Node & PrivacyPolicy
+@dontInfer
+  @childOf(types: ["STRAPI_PRIVACY_POLICY"])
+  @proxyOf(type: "STRAPI_PRIVACY_POLICY") {
+    title: String! @proxyField
+    content: String
+      @proxyField(from: "parent.body.data___NODE")
+      @link(by: "parent.id", on: "Mdx")
+      @proxyResolver(on: "Mdx")
+    publishedAt: Date @proxyField @dateformat
+    seo: StrapiSeoProxy
+      @proxyField(from: "parent.SEO___NODE")
+      @link(by: "parent.id")
+  }
+

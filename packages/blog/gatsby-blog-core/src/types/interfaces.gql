@@ -23,6 +23,7 @@ interface Article implements Node {
   thumbnail: ImageAsset
   tableOfContents(maxDepth: Int = 6): JSON
   draft: Boolean
+  seo: Seo
 }
 
 ############################################
@@ -53,6 +54,14 @@ interface ArticleAuthor implements Node {
   thumbnail: ImageAsset
 }
 
+interface PrivacyPolicy implements Node {
+  id: ID!
+  title: String!
+  content: String
+  publishedAt: Date @proxy(from: "publishedAt") @dateformat
+  seo: Seo
+}
+
 type SocialMedia {
   name: String
   url: String!
@@ -66,4 +75,16 @@ type ArticleTag implements Node {
   id: ID!
   name: String!
   slug: String! @makeSlug
+}
+
+############################################
+## SEO
+############################################
+
+interface Seo implements Node {
+  id: ID!
+  keywords: String
+  metaDescription: String
+  metaTitle: String
+  metaImage: ImageAsset
 }

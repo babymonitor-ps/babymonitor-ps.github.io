@@ -80,6 +80,7 @@ module.exports = {
               }
             }
           },
+          'privacy-policy',
           {
             singularName: 'terms-and-condition',
             queryParams: {
