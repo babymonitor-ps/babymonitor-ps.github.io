@@ -1,6 +1,7 @@
 const {
   makeSlug,
   normalizeSocial,
+  normalizeMetaSocial,
   blockContentToMarkdown
 } = require('./schema/extensions')
 
@@ -14,6 +15,9 @@ module.exports = async ({ actions, store }) => {
   }
   if (!fieldExtensions[normalizeSocial.name]) {
     createFieldExtension(normalizeSocial)
+  }
+  if (!fieldExtensions[normalizeMetaSocial.title]) {
+    createFieldExtension(normalizeMetaSocial)
   }
   if (!fieldExtensions[blockContentToMarkdown.name]) {
     createFieldExtension(blockContentToMarkdown)

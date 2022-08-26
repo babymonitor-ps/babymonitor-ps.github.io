@@ -25,9 +25,8 @@ const Seo = ({
 
   const site = useSiteMetadata()
   const global = useGlobal()
-  const { defaultSeo, siteName, favicon } = global
-
-  /*if (seo == null) {
+  
+  if (Object.keys(seo).length === 0) {
     seo = {
       title,
       description,
@@ -43,10 +42,12 @@ const Seo = ({
       siteUrl,
       locale
     }
-  }*/
+  }
 
-  console.log(seo)
-  console.log(defaultSeo)
+  const { defaultSeo, siteName, favicon } = global
+
+  //console.log(seo)
+  //console.log(defaultSeo)
   const fullSeo = { ...defaultSeo, ...seo};
   console.log(fullSeo)
 
@@ -65,13 +66,15 @@ const Seo = ({
    * Meta Tags
    */
 
+  //const { facebookMeta } = fullSeo
+
   const metaTags = [
-    { itemprop: 'name', content: title || site.title },
-    { itemprop: 'description', content: description },
-    { name: 'description', content: description },
+    { itemprop: 'name', content: fullSeo.metaTitle },
+    { itemprop: 'description', content: fullSeo.description },
+    { name: 'description', content: fullSeo.description },
 
     { property: 'og:title', content: title || site.title },
-    { property: 'og:description', content: description },
+    { property: 'og:description', content: fullSeo.description },
     { property: 'og:type', content: date ? 'article' : 'website' },
     { property: 'og:site_name', content: site.name },
     { property: 'og:image', content: imageUrl },

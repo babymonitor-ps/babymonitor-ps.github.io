@@ -25,7 +25,7 @@ const Post = ({
     ...(categoryPosts ? categoryPosts.nodes : [])
   ]
   const { pageContext: { services = {}, siteUrl } = {} } = props
-
+  console.log(post)
   return (
     <Layout {...props}>
       <Seo {...post} siteUrl={siteUrl} />

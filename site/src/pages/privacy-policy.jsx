@@ -12,16 +12,17 @@ import { useGlobal, usePrivacyPolicy } from '@helpers-blog'
 const PagePrivacy = props => {
   const global = useGlobal()
   const privacyPolicy = usePrivacyPolicy()
+  const seo = privacyPolicy.seo[0]
 
   return (
     <Layout {...props}>
-      <Seo seo={ privacyPolicy.seo }/>
+      <Seo seo={ seo }/>
       <Divider/>
       <Stack effectProps={{effect: 'fadeInDown'}}>
         <Main>
           <PageTitle
             header={`${privacyPolicy.title} | ${global.siteName}`}
-            subheader={privacyPolicy.seo.metaDescription}
+            subheader={seo.metaDescription}
           />
           <Divider/>
           <ContactForm/>

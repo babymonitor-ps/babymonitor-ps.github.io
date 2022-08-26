@@ -19,7 +19,7 @@ type StrapiArticleProxy implements Node & Article
     @proxyField(from: "parent.category___NODE")
     @link(by: "parent.id")
   seo: StrapiSeoProxy
-    @proxyField(from: "parent.SEO___NODE")
+    @proxyField(from: "parent.seo___NODE")
     @link(by: "parent.id")
   tags: [ArticleTag] @proxyField(from: "parent.tags_array") @link(by: "name")
   keywords: [String] @proxyField(from: "parent.keywords_array")
@@ -115,6 +115,9 @@ type StrapiSeoProxy implements Node & Seo
       @proxyField(from: "parent.metaImage___NODE")
       @link(on: "STRAPI__MEDIA")
       @proxyResolver(on: "STRAPI__MEDIA", to: "localFileImageSharp")
+    metaSocial: [MetaSocial]
+      @proxyField(from: "parent.metaSocial_array")
+      @normalizeMetaSocial
   }
 
 type PrivacyPolicyProxy implements Node & PrivacyPolicy
@@ -128,7 +131,7 @@ type PrivacyPolicyProxy implements Node & PrivacyPolicy
       @proxyResolver(on: "Mdx")
     publishedAt: Date @proxyField @dateformat
     seo: StrapiSeoProxy
-      @proxyField(from: "parent.SEO___NODE")
+      @proxyField(from: "parent.seo___NODE")
       @link(by: "parent.id")
   }
 

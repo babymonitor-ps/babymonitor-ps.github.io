@@ -70,6 +70,20 @@ const normalizeSocial =
     }))
   }
 
+const normalizeMetaSocial =
+  (options = {}, fieldConfig) =>
+  async (source, args, context, info) => {
+    const resolver = fieldConfig.resolve || context.defaultFieldResolver
+    const fieldValue = await resolver(source, args, context, info)
+    if (fieldValue == null || fieldValue.length < 1) return null
+
+    return fieldValue.map(social => ({
+      title: social.title || null,
+      description: social.description || null,
+      socialNetwork: social.socialNetwork || null,
+    }))
+  }
+
 /**
  * Block Content to Markdown
  *
@@ -102,5 +116,6 @@ const blockContentToMarkdown =
 module.exports = {
   makeSlug,
   normalizeSocial,
-  blockContentToMarkdown
+  blockContentToMarkdown,
+  normalizeMetaSocial
 }

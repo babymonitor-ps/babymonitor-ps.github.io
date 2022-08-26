@@ -19,6 +19,9 @@ export const query = graphql`
     author {
       ...ArticleAuthor
     }
+    seo {
+      ...Seo
+    }
     body
     keywords
     tags {

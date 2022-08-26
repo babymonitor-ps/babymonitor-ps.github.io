@@ -15,6 +15,11 @@ const privacyPolicyQuery = graphql`
         keywords
         metaTitle
         metaDescription
+        metaSocial {
+          title
+          description
+          socialNetwork
+        }
         metaImage {
           localFile {
             url

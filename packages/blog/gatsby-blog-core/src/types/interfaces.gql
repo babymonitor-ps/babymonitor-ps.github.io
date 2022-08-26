@@ -67,6 +67,12 @@ type SocialMedia {
   url: String!
 }
 
+type MetaSocial {
+  title: String
+  description: String!
+  socialNetwork: String!
+}
+
 ############################################
 ## Tag
 ############################################
@@ -87,4 +93,5 @@ interface Seo implements Node {
   metaDescription: String
   metaTitle: String
   metaImage: ImageAsset
+  metaSocial: [MetaSocial]
 }

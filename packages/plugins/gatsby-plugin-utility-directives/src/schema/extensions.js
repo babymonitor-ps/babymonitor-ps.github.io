@@ -1,7 +1,8 @@
 const {
   makeSlug,
   blockContentToMarkdown,
-  normalizeSocial
+  normalizeSocial,
+  normalizeMetaSocial
 } = require('./resolvers')
 
 module.exports = {
@@ -26,6 +27,14 @@ module.exports = {
     description: 'Normalize social links object.',
     extend: (args, fieldConfig) => ({
       resolve: normalizeSocial(args, fieldConfig)
+    })
+  },
+
+  normalizeMetaSocial: {
+    name: 'normalizeMetaSocial',
+    description: 'Normalize meta social object.',
+    extend: (args, fieldConfig) => ({
+      resolve: normalizeMetaSocial(args, fieldConfig)
     })
   }
 }
