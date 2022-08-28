@@ -27,6 +27,21 @@ const globalQuery = graphql`
           url
         }
       }
+      social {
+        name
+        url
+      }
+      headerMenu {
+        name
+        slug
+      }
+      footerMenu {
+        title
+        items {
+          name
+          slug
+        }
+      }
     }
   }
   

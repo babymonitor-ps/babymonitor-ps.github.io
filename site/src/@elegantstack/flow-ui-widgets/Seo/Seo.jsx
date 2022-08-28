@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import { helmetJsonLdProp } from 'react-schemaorg'
 import { getSrc } from 'gatsby-plugin-image'
 import { useGlobal } from '@helpers-blog'
+//import useSiteMetadata from '@helpers-blog/useSiteMetadata'
 import getImageVariant from '@components/utils/getImageVariant'
 
 const Seo = ({
@@ -24,6 +25,7 @@ const Seo = ({
 
   //const site = useSiteMetadata()
   const global = useGlobal()
+  //console.log(global)
   
   if (Object.keys(seo).length === 0) {
     seo = {
@@ -50,7 +52,7 @@ const Seo = ({
   const fullSeo = { ...defaultSeo, ...seo};
   console.log(fullSeo)
 
-  const social = (author && author.social) || site.social || []
+  const social = (author && author.social) || global.social || []
   const twitter =
     social.find(s => s.name && s.name.toLowerCase() === 'twitter') || {}
 
@@ -84,7 +86,13 @@ const Seo = ({
   ]
 
   if (fullSeo.keywords && fullSeo.keywords.length > 0) {
-    metaTags.push({ name: 'keywords', content: fullSeo.keywords.join(', ') })
+    if (Array.isArray(fullSeo.keywords)) {
+      metaTags.push({ name: 'keywords', content: fullSeo.keywords.join(', ') })
+    }
+    else {
+      metaTags.push({ name: 'keywords', content: fullSeo.keywords })
+    }
+
   }
 
   if (date) {

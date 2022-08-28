@@ -111,6 +111,11 @@ module.exports = {
                 favicon: '*',
                 defaultSeo: {
                   populate: '*'
+                },
+                social: '*',
+                headerMenu: '*',
+                footerMenu: {
+                  populate: '*'
                 }
               }
             }
