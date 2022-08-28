@@ -10,6 +10,13 @@ const privacyPolicyQuery = graphql`
     strapiPrivacyPolicy {
       id
       title
+      content {
+        data {
+          childMdx {
+            body
+          }
+        }
+      }
       publishedAt(formatString: "MMMM DD, YYYY")
       seo {
         keywords

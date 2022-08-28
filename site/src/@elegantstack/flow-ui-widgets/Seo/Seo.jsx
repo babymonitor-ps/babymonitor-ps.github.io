@@ -2,7 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { helmetJsonLdProp } from 'react-schemaorg'
 import { getSrc } from 'gatsby-plugin-image'
-import useSiteMetadata from '@helpers-blog/useSiteMetadata'
 import { useGlobal } from '@helpers-blog'
 import getImageVariant from '@components/utils/getImageVariant'
 
@@ -23,13 +22,13 @@ const Seo = ({
   seo = {}
 }) => {
 
-  const site = useSiteMetadata()
+  //const site = useSiteMetadata()
   const global = useGlobal()
   
   if (Object.keys(seo).length === 0) {
     seo = {
-      title,
-      description,
+      metaTitle: title,
+      metaDescription: description,
       excerpt,
       meta,
       keywords,
@@ -38,7 +37,7 @@ const Seo = ({
       date,
       timeToRead,
       children,
-      thumbnail,
+      metaImage: thumbnail,
       siteUrl,
       locale
     }
@@ -55,9 +54,7 @@ const Seo = ({
   const twitter =
     social.find(s => s.name && s.name.toLowerCase() === 'twitter') || {}
 
-  description = excerpt || description || site.description
-
-  const imageSrc = getSrc(getImageVariant(thumbnail, 'hero'))
+  const imageSrc = getSrc(getImageVariant(fullSeo.metaImage, 'hero'))
   const imageUrl =
     imageSrc &&
     (imageSrc.startsWith('//') ? imageSrc : siteUrl && `${siteUrl}${imageSrc}`)
@@ -69,25 +66,25 @@ const Seo = ({
   //const { facebookMeta } = fullSeo
 
   const metaTags = [
-    { itemprop: 'name', content: fullSeo.metaTitle },
-    { itemprop: 'description', content: fullSeo.description },
-    { name: 'description', content: fullSeo.description },
+    { itemprop: 'name', content: fullSeo.metaTitle || siteName },
+    { itemprop: 'description', content: fullSeo.metaDescription || excerpt },
+    { name: 'description', content: fullSeo.metaDescription || excerpt },
 
-    { property: 'og:title', content: title || site.title },
-    { property: 'og:description', content: fullSeo.description },
+    { property: 'og:title', content: fullSeo.metaTitle || siteName },
+    { property: 'og:description', content: fullSeo.metaDescription || excerpt },
     { property: 'og:type', content: date ? 'article' : 'website' },
-    { property: 'og:site_name', content: site.name },
+    { property: 'og:site_name', content: siteName },
     { property: 'og:image', content: imageUrl },
 
     { name: 'twitter:card', content: 'summary' },
-    { name: 'twitter:site', content: site.name },
+    { name: 'twitter:site', content: siteName },
     { name: 'twitter:title', content: title },
-    { name: 'twitter:description', content: description },
+    { name: 'twitter:description', content: fullSeo.metaDescription || excerpt },
     { name: 'twitter:creator', content: twitter.url }
   ]
 
-  if (keywords && keywords.length > 0) {
-    metaTags.push({ name: 'keywords', content: keywords.join(', ') })
+  if (fullSeo.keywords && fullSeo.keywords.length > 0) {
+    metaTags.push({ name: 'keywords', content: fullSeo.keywords.join(', ') })
   }
 
   if (date) {
@@ -138,7 +135,7 @@ const Seo = ({
         {
           '@type': 'ListItem',
           position: 1,
-          name: site.name,
+          name: siteName,
           item: siteUrl
         },
         {
@@ -158,7 +155,7 @@ const Seo = ({
         lang: locale || 'en'
       }}
       title={title}
-      titleTemplate={`%s | ${site.title}`}
+      titleTemplate={`%s | ${siteName}`}
       meta={metaTags}
       script={scripts}
     >
