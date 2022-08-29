@@ -27,7 +27,7 @@ const Seo = ({
   const global = useGlobal()
   //console.log(global)
   
-  if (Object.keys(seo).length === 0) {
+  if (seo == null || Object.keys(seo).length === 0) {
     seo = {
       metaTitle: title,
       metaDescription: description,

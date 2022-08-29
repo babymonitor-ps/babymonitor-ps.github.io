@@ -3,17 +3,17 @@ import { Layout, Stack, Main } from '@layout'
 import PageTitle from '@elegantstack/flow-ui-components/src/PageTitle'
 import Divider from '@elegantstack/flow-ui-components/src/Divider'
 import Seo from '@elegantstack/flow-ui-widgets/src/Seo'
-import { useGlobal, usePrivacyPolicy } from '@helpers-blog'
+import { useGlobal, useAbout } from '@helpers-blog'
 import components from "@elegantstack/flow-ui-components/src/Mdx";
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@theme-ui/mdx'
 
 
-const PageTermsAndCondition = props => {
+const PageAbout = props => {
   const global = useGlobal()
-  const privacyPolicy = usePrivacyPolicy()
+  const about = useAbout()
   //console.log(privacyPolicy)
-  const seo = privacyPolicy.seo
+  const seo = about.seo
 
   return (
     <Layout {...props}>
@@ -22,12 +22,12 @@ const PageTermsAndCondition = props => {
       <Stack effectProps={{effect: 'fadeInDown'}}>
         <Main>
           <PageTitle
-            header={`${privacyPolicy.title} | ${global.siteName}`}
+            header={`${about.title} | ${global.siteName}`}
             subheader={seo.metaDescription}
           />
           <Divider/>
           <MDXProvider components={components}>
-            <MDXRenderer>{ privacyPolicy.content.data.childMdx.body }</MDXRenderer>
+            <MDXRenderer>{ about.content.data.childMdx.body }</MDXRenderer>
           </MDXProvider>
         </Main>
 
@@ -36,4 +36,4 @@ const PageTermsAndCondition = props => {
   );
 }
 
-export default PageTermsAndCondition
+export default PageAbout

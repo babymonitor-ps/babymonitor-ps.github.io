@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from 'theme-ui'
 import Navigation from '@components/Navigation'
 import Drawer from '@components/Drawer'
-import useSiteMetadata from '@helpers-blog/useSiteMetadata'
+import { useGlobal } from '@helpers-blog'
 
 const styles = {
   desktopMenu: {
@@ -17,7 +17,7 @@ const styles = {
 }
 
 export const HeaderMenu = ({ mobileMenu = {} }) => {
-  const { headerMenu } = useSiteMetadata()
+  const { headerMenu } = useGlobal()
 
   const desktopMenuNav = (
     <Navigation

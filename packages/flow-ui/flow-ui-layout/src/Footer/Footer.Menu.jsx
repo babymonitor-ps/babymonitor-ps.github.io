@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from 'theme-ui'
 import Navigation from '@components/Navigation'
-import useSiteMetadata from '@helpers-blog/useSiteMetadata'
+import { useGlobal } from '@helpers-blog'
 
 const styles = {
   navHeader: {
@@ -10,7 +10,7 @@ const styles = {
 }
 
 export const FooterMenu = () => {
-  const { footerMenu } = useSiteMetadata()
+  const { footerMenu } = useGlobal()
 
   return (
     <>

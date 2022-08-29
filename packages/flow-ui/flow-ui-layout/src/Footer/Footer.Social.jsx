@@ -1,7 +1,7 @@
 import React from 'react'
 import { Heading } from 'theme-ui'
 import Navigation from '@components/Navigation'
-import useSiteMetadata from '@helpers-blog/useSiteMetadata'
+import { useGlobal } from '@helpers-blog'
 import attachSocialIcons from '@helpers/attachSocialIcons'
 
 const styles = {
@@ -14,7 +14,7 @@ const styles = {
 }
 
 export const FooterSocial = () => {
-  const { social } = useSiteMetadata()
+  const { social } = useGlobal()
 
   return (
     <>

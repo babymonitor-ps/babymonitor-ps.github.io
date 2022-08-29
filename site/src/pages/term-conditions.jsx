@@ -1,32 +1,39 @@
 import React from 'react'
-import { Layout, Stack, Main, Sidebar } from '@layout'
+import { Layout, Stack, Main } from '@layout'
 import PageTitle from '@elegantstack/flow-ui-components/src/PageTitle'
 import Divider from '@elegantstack/flow-ui-components/src/Divider'
 import Seo from '@elegantstack/flow-ui-widgets/src/Seo'
-import ContactForm from '@elegantstack/flow-ui-widgets/src/ContactForm'
-import ContactInfo from '@elegantstack/flow-ui-widgets/src/ContactInfo'
-import Commitment from '@elegantstack/flow-ui-widgets/src/Commitment'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXProvider } from '@theme-ui/mdx'
+import { useGlobal, useTerms } from '@helpers-blog'
+import components from "@elegantstack/flow-ui-components/src/Mdx";
 
-const PageContact = props => (
-  <Layout {...props}>
-    <Seo title='Term & Conditions | Baby Monitor' />
-    <Divider />
-    <Stack effectProps={{ effect: 'fadeInDown' }}>
-      <Main>
-        <PageTitle
-          header="Term & Conditions | Baby Monitor"
-          subheader='The best baby monitor app and gadget to watch over your kids. You will get notifications on your phone, with sound and video, as soon as they start crying or making noise.'
-        />
-        <Divider />
-        <ContactForm />
-      </Main>
-      <Sidebar>
-        <Commitment />
-        <Divider />
-        <ContactInfo />
-      </Sidebar>
-    </Stack>
-  </Layout>
-)
+const PageContact = props => {
+  const global = useGlobal()
+
+  const termsAndCondition = useTerms()
+  //console.log(termsAndCondition)
+  const seo = termsAndCondition.seo
+
+  return (
+    <Layout {...props}>
+      <Seo seo={ seo } />
+      <Divider />
+      <Stack effectProps={{ effect: 'fadeInDown' }}>
+        <Main>
+          <PageTitle
+            header={`${termsAndCondition.title} | ${global.siteName}`}
+            subheader={seo.metaDescription}
+          />
+          <Divider />
+          <MDXProvider components={components}>
+            <MDXRenderer>{ termsAndCondition.content.data.childMdx.body }</MDXRenderer>
+          </MDXProvider>
+        </Main>
+
+      </Stack>
+    </Layout>
+  )
+}
 
 export default PageContact

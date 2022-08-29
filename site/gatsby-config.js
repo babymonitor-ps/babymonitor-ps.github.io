@@ -74,6 +74,11 @@ module.exports = {
             singularName: 'about',
             queryParams: {
               populate: {
+                title: '*',
+                content: '*',
+                seo: {
+                  populate: '*'
+                },
                 blocks: {
                   populate: '*'
                 }
@@ -82,6 +87,18 @@ module.exports = {
           },
           {
             singularName: 'privacy-policy',
+            queryParams: {
+              populate: {
+                title: '*',
+                content: '*',
+                seo: {
+                  populate: '*'
+                }
+              }
+            }
+          },
+          {
+            singularName: 'disclaimer',
             queryParams: {
               populate: {
                 title: '*',
